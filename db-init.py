@@ -2,14 +2,27 @@ import sqlite3
 
 connection = sqlite3.connect('sports.db')
 db = connection.cursor()
+sports = ["wBasketball", "wCrossCountry", "wGolf", "wLacrosse", "wNordicSkiing", "wSoccer", "wSwimmingDiving", "wTrackField", "wVolleyBall", "wWrestling", "mBasketball", "mFootball", "mGolf", "mHockey", "mNordicSkiing", "mSoccer", "mSwimmingDiving"]
 
 db.execute('''
     DROP TABLE IF EXISTS sports
 ''')
 
 db.execute('''
-CREATE TABLE sports (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    DROP TABLE IF EXISTS sportsInfo
+''')
+
+db.execute('''
+    CREATE TABLE sports (
+        sportsId INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT
+);
+''')
+
+db.execute('''
+CREATE TABLE sportsInfo (
+    sportsInfoId INTEGER PRIMARY KEY AUTOINCREMENT,
+    sportsId,
     year INT,
     name TEXT,
     ovrName TEXT,
@@ -27,11 +40,13 @@ CREATE TABLE sports (
     awayName TEXT,
     awayValue TEXT,
     neutralName TEXT,
-    neutralValue TEXT
+    neutralValue TEXT,
+    FOREIGN KEY (sportsId) REFERENCES sports(sportsId)
 );
 ''')
 
-
+for sport in sports:
+    db.execute("INSERT INTO sports (name) VALUES (?)", (sport,))
 
 connection.commit()
 connection.close()
