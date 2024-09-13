@@ -4,8 +4,13 @@ connection = sqlite3.connect('sports.db')
 db = connection.cursor()
 
 db.execute('''
-CREATE TABLE IF NOT EXISTS sports (
-    id INT PRIMARY KEY,
+    DROP TABLE IF EXISTS sports
+''')
+
+db.execute('''
+CREATE TABLE sports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    year INT,
     name TEXT,
     ovrName TEXT,
     ovrValue TEXT,
