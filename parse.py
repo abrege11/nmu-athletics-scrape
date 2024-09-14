@@ -31,6 +31,13 @@ class Scorecard:
     
 scorecardList = []
 
+def listToDict(values):
+    res = defaultdict(list)
+    for value in values:
+        res[value[3]].append(value)
+    return res
+
+# get a list of lists of all values 
 def getAllValues():
     values = []
     for row in data:
@@ -44,12 +51,12 @@ def getAllValues():
         values.append(scorecard.printValues())
     return values
 
+# get total win loss tie for each team, along with years recorded in a list
+# output: dictionary of lists
 def getTotals():
     values = getAllValues()
-    res = defaultdict(list)
     temp = []
-    for value in values:
-        res[value[3]].append(value)
+    res = listToDict(values)
     for key, val in res.items():
         temp = [0, 0, 0, 0, []]
         for i in range(len(val)-1):
@@ -63,11 +70,25 @@ def getTotals():
         temp.clear()
     return res
 
+# get each teams years showing if they had a winning or losing season
+def getWinningYears():
+    values = getAllValues()
+    res = listToDict(values)
+    for key, val in res.items():
+        for i in range(len(val)-1):
+            pass
+    return res
+
+# -- getAllValues call
 # values = getAllValues()
 # print(values)
+
+# -- getTotals call
 vals = getTotals()
 for val in vals.values():
     print(f"{namingDictionary[val[3]]}: {val}\n")
+
+
 
 
 connection.commit()
