@@ -1,2 +1,2 @@
 # nmu-athletics-scrape
-brushing up on webscraping
+Scraping all of my universities sports data represnting these stats in different ways.
