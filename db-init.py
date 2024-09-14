@@ -2,7 +2,7 @@ import sqlite3
 
 connection = sqlite3.connect('sports.db')
 db = connection.cursor()
-sports = ["wBasketball", "wCrossCountry", "wGolf", "wLacrosse", "wNordicSkiing", "wSoccer", "wSwimmingDiving", "wTrackField", "wVolleyBall", "wWrestling", "mBasketball", "mFootball", "mGolf", "mHockey", "mNordicSkiing", "mSoccer", "mSwimmingDiving"]
+sports = ["wBasketball", "wLacrosse", "wSoccer", "wVolleyBall", "wWrestling", "mBasketball", "mFootball", "mHockey", "mSoccer"]
 
 db.execute('''
     DROP TABLE IF EXISTS sports
@@ -23,7 +23,7 @@ db.execute('''
 CREATE TABLE sportsInfo (
     sportsInfoId INTEGER PRIMARY KEY AUTOINCREMENT,
     sportsId,
-    year INT,
+    year TEXT,
     name TEXT,
     ovrName TEXT,
     ovrValue TEXT,
