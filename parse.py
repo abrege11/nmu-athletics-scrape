@@ -18,6 +18,8 @@ namingDictionary = {
 data = db.execute("SELECT ovrValue, sportsId, year FROM sportsInfo").fetchall()
 sportsNames = db.execute("SELECT * FROM sports").fetchall()
 
+winningStatsList = {}
+
 class Scorecard:
     def __init__(self, win, loss, tie, id, year):
         self.win = win
@@ -76,7 +78,7 @@ def getWinningYears():
     res = listToDict(values)
     for key, val in res.items():
         for i in range(len(val)-1):
-            pass
+            print(val[i])
     return res
 
 # -- getAllValues call
@@ -88,7 +90,7 @@ vals = getTotals()
 for val in vals.values():
     print(f"{namingDictionary[val[3]]}: {val}\n")
 
-
+# getWinningYears()
 
 
 connection.commit()
